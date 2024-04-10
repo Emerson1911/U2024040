@@ -8,43 +8,43 @@ using U20240408.EntidadesDeNegocio;
 
 namespace U20240408.AccesoADatos
 {
-    public class PersonaMDAL
+    public class PersonaUDAL
     {
         readonly AppDbContext _appDbContext;
-        public PersonaMDAL(AppDbContext appDbContext)
+        public PersonaUDAL(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public async Task<int> Crear(PersonaU personaM)
+        public async Task<int> Crear(PersonaU personaU)
         {
-            _appDbContext.Add(personaM);
+            _appDbContext.Add(personaU);
             return await _appDbContext.SaveChangesAsync();
         }
-        public async Task<int> Modificar(PersonaU personaM)
+        public async Task<int> Modificar(PersonaU personaU)
         {
-            var PersonaData = await _appDbContext.PersonaU.FirstOrDefaultAsync(s => s.Id == personaM.Id);
+            var PersonaData = await _appDbContext.PersonaU.FirstOrDefaultAsync(s => s.Id == personaU.Id);
             if (PersonaData != null)
             {
-                PersonaData.NombreU = personaM.NombreU;
-                PersonaData.ApellidoU = personaM.ApellidoU;
-                PersonaData.FechaNacimientoU = personaM.FechaNacimientoU;
-                PersonaData.SueldoU = personaM.SueldoU;
-                PersonaData.EstatusU = personaM.EstatusU;
+                PersonaData.NombreU = personaU.NombreU;
+                PersonaData.ApellidoU = personaU.ApellidoU;
+                PersonaData.FechaNacimientoU = personaU.FechaNacimientoU;
+                PersonaData.SueldoU = personaU.SueldoU;
+                PersonaData.EstatusU = personaU.EstatusU;
                 _appDbContext.Update(PersonaData);
             }
             return await _appDbContext.SaveChangesAsync();
         }
-        public async Task<int> Eliminar(PersonaU personaM)
+        public async Task<int> Eliminar(PersonaU personaU)
         {
-            var PersonaData = await _appDbContext.PersonaU.FirstOrDefaultAsync(s => s.Id == personaM.Id);
+            var PersonaData = await _appDbContext.PersonaU.FirstOrDefaultAsync(s => s.Id == personaU.Id);
             if (PersonaData != null)
                 _appDbContext.Remove(PersonaData);
             return await _appDbContext.SaveChangesAsync();
         }
-        public async Task<PersonaU> ObtenerPoId(PersonaU personaM)
+        public async Task<PersonaU> ObtenerPoId(PersonaU personaU)
         {
-            var PersonaData = await _appDbContext.PersonaU.FirstOrDefaultAsync(s => s.Id == personaM.Id);
+            var PersonaData = await _appDbContext.PersonaU.FirstOrDefaultAsync(s => s.Id == personaU.Id);
             if (PersonaData != null)
                 return PersonaData;
             else
@@ -59,11 +59,15 @@ namespace U20240408.AccesoADatos
             var query = _appDbContext.PersonaU.AsQueryable();
             if (!string.IsNullOrWhiteSpace(personaU.NombreU))
             {
+#pragma warning disable CS8602 // Desreferencia de una referencia posiblemente NULL.
                 query = query.Where(s => s.NombreU.Contains(personaU.NombreU));
+#pragma warning restore CS8602 // Desreferencia de una referencia posiblemente NULL.
             }
             if (!string.IsNullOrWhiteSpace(personaU.ApellidoU))
             {
+#pragma warning disable CS8602 // Desreferencia de una referencia posiblemente NULL.
                 query = query.Where(s => s.ApellidoU.Contains(personaU.ApellidoU));
+#pragma warning restore CS8602 // Desreferencia de una referencia posiblemente NULL.
             }
             return await query.ToListAsync();
         }

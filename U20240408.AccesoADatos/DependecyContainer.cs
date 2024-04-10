@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace U20240408.AccesoADatos
 {
@@ -15,7 +11,7 @@ namespace U20240408.AccesoADatos
         {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("conn")));
-            services.AddScoped<PersonaMDAL>();
+            services.AddScoped<PersonaUDAL>();
             return services;
         }
     }

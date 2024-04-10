@@ -10,12 +10,13 @@ namespace U20240408.EntidadesDeNegocio
 
         [StringLength(60)]
         [Display(Name = "Nombre")]
-        
+        [Required(ErrorMessage = "El campo Nombre Nacimiento es Requerido")]
         public string? NombreU { get; set; }
 
        
         [StringLength(60)]
         [Display(Name = "Apellido")]
+        [Required(ErrorMessage = "El campo Apellido Nacimiento es Requerido")]
         public string? ApellidoU { get; set; }
 
         [Required(ErrorMessage = "El campo Fecha Nacimiento es Requerido")]
