@@ -1,0 +1,54 @@
+﻿@model U20240408.EntidadesDeNegocio.PersonaU
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PersonaU</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="NombreU" class="control-label"></label>
+                <input asp-for="NombreU" class="form-control" />
+                <span asp-validation-for="NombreU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidoU" class="control-label"></label>
+                <input asp-for="ApellidoU" class="form-control" />
+                <span asp-validation-for="ApellidoU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNacimientoU" class="control-label"></label>
+                <input asp-for="FechaNacimientoU" class="form-control" />
+                <span asp-validation-for="FechaNacimientoU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SueldoU" class="control-label"></label>
+                <input asp-for="SueldoU" class="form-control" />
+                <span asp-validation-for="SueldoU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstatusU" class="control-label"></label>
+                <input asp-for="EstatusU" class="form-control" />
+                <span asp-validation-for="EstatusU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
