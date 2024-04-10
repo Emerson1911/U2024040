@@ -7,22 +7,22 @@ namespace U20240408.UI.AppWebMVC.Controllers
 {
     public class PersonaController : Controller
     {
-        readonly PersonaMBL _personaMBL;
-        public PersonaController(PersonaMBL personaMBL)
+        readonly PersonaUBL _personaUBL;
+        public PersonaController(PersonaUBL personaUBL)
         {
-            _personaMBL = personaMBL;
+            _personaUBL = personaUBL;
         }
         // GET: PersonaController
-        public async Task<ActionResult> Index(PersonaU personaM)
+        public async Task<ActionResult> Index(PersonaU personaU)
         {
-            var persona = await _personaMBL.Buscar(personaM);
+            var persona = await _personaUBL.Buscar(personaU);
             return View(persona);
         }
 
         // GET: PersonaController/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            var clientes = await _personaMBL.ObtenerPoId(new PersonaU { Id = id });
+            var clientes = await _personaUBL.ObtenerPoId(new PersonaU { Id = id });
             return View(clientes);
         }
 
@@ -35,11 +35,11 @@ namespace U20240408.UI.AppWebMVC.Controllers
         // POST: PersonaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(PersonaU personaM)
+        public async Task<ActionResult> Create(PersonaU personaU)
         {
             try
             {
-                await _personaMBL.Crear(personaM);
+                await _personaUBL.Crear(personaU);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,18 +51,18 @@ namespace U20240408.UI.AppWebMVC.Controllers
         // GET: PersonaController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var persona = await _personaMBL.ObtenerPoId(new PersonaU { Id = id });
+            var persona = await _personaUBL.ObtenerPoId(new PersonaU { Id = id });
             return View(persona);
         }
 
         // POST: PersonaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(PersonaU personaM)
+        public async Task<ActionResult> Edit(PersonaU personaU)
         {
             try
             {
-                await _personaMBL.Modificar(personaM);
+                await _personaUBL.Modificar(personaU);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -74,18 +74,18 @@ namespace U20240408.UI.AppWebMVC.Controllers
         // GET: PersonaController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var clientes = await _personaMBL.ObtenerPoId(new PersonaU { Id = id });
+            var clientes = await _personaUBL.ObtenerPoId(new PersonaU { Id = id });
             return View(clientes);
         }
 
         // POST: PersonaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, PersonaU personaM)
+        public async Task<ActionResult> Delete(int id, PersonaU personaU)
         {
             try
             {
-                await _personaMBL.Eliminar(personaM);
+                await _personaUBL.Eliminar(personaU);
                 return RedirectToAction(nameof(Index));
             }
             catch
